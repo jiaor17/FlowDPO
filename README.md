@@ -1,4 +1,4 @@
-# Structural_DPO (Antibody)
+# FlowDPO (Antibody)
 
 
 ## Data
