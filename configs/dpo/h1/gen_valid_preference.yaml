@@ -1,0 +1,18 @@
+mode: single_cdr
+
+sampling:
+  sample_structure: true
+  sample_sequence: false
+  num_samples: 5
+
+dataset:
+  test:
+    class: SAbDab
+    mmap_dir: ./datasets/sabdab
+    cdr_type: H_CDR1
+    specify_index: ./datasets/sabdab/H_CDR1/valid.txt
+
+dataloader:
+  shuffle: false
+  num_workers: 4
+  batch_size: 32

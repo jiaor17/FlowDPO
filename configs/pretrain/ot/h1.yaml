@@ -1,0 +1,48 @@
+dataset:
+  train:
+    class: SAbDab
+    mmap_dir: ./datasets/sabdab
+    cdr_type: H_CDR1
+    specify_index: ./datasets/sabdab/H_CDR1/train.txt
+  valid:
+    class: SAbDab
+    mmap_dir: ./datasets/sabdab
+    cdr_type: H_CDR1
+    specify_index: ./datasets/sabdab/H_CDR1/valid.txt
+
+dataloader:
+  shuffle: true
+  num_workers: 4
+  batch_size: 64
+
+trainer:
+  class: DiffAbTrainer
+  config:
+    max_epoch: 1000
+    save_topk: 10
+    save_dir: ./ckpts/DiffAb_MEAN_H1
+    patience: 10
+    metric_min_better: true
+
+    optimizer:
+      class: AdamW
+      lr: 1.0e-4
+
+    scheduler:
+      class: ReduceLROnPlateau
+      factor: 0.8
+      patience: 10
+      mode: min
+      frequency: val_epoch
+      min_lr: 5.0e-6
+
+model:
+  class: DiffAb
+  diffusion_opt:
+    hidden_size: 128
+    num_steps: 100
+    n_channel: 4
+    n_layers: 6
+    k_neighbors: 9 # context 9 and interaction 9
+    flow_matching: True
+  mode: fixseq

@@ -1,0 +1,20 @@
+mode: single_cdr
+
+batch_size: 20
+
+sampling:
+  sample_structure: true
+  sample_sequence: false
+  num_samples: 20
+
+dataset:
+  test:
+    class: SAbDab
+    mmap_dir: ./datasets/sabdab
+    cdr_type: L_CDR3
+    specify_index: ./datasets/sabdab/L_CDR3/test.txt
+
+dataloader:
+  shuffle: false
+  num_workers: 4
+  batch_size: 32

@@ -1,0 +1,54 @@
+dataset:
+  train:
+    class: PreferenceDataset
+    mmap_dir: ./datasets/sabdab
+    cdr_type: H_CDR1
+    specify_index: ./datasets/sabdab/H_CDR1/train.txt
+    dpo_mmap_dir: ./datasets/mean_train_dpo/h1
+    p_ref: 0.0
+    negative_threshold: 0.0
+  valid:
+    class: PreferenceDataset
+    mmap_dir: ./datasets/sabdab
+    cdr_type: H_CDR1
+    specify_index: ./datasets/sabdab/H_CDR1/valid.txt
+    dpo_mmap_dir: ./datasets/mean_valid_dpo/h1
+    p_ref: 1.0  # always use ground truth as positive sample
+    negative_threshold: 0.0 # all generated samples can be negative sample
+
+dataloader:
+  train:
+    shuffle: true
+    num_workers: 4
+    batch_size: 8
+  valid:
+    shuffle: false
+    num_workers: 4
+    batch_size: 32
+
+trainer:
+  class: DPOTrainer
+  config:
+    max_epoch: 25
+    save_topk: 10
+    save_dir: ./ckpts/DiffAb_MEAN_dpo_h1
+    patience: 10
+    metric_min_better: true
+    dpo_beta: 2
+    dpo_mode: graph # node/graph
+    timesteps: 100
+    add_diffusion_loss: false
+
+    optimizer:
+      class: AdamW
+      lr: 5.0e-6
+
+    scheduler:
+      class: ReduceLROnPlateau
+      factor: 0.6
+      patience: 3
+      mode: min
+      frequency: val_epoch
+      min_lr: 1.0e-7
+
+load_ckpt: ./ckpts/DiffAb/version_0/checkpoint/best.ckpt
