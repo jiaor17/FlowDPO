@@ -1,0 +1,14 @@
+_target_: diffcsp.pl_modules.dpo.CSPDiffusion
+time_dim: 256
+cost_coord: 1.
+cost_lattice: 1.
+max_neighbors: 20  # maximum number of neighbors for OTF graph bulding in decoder
+radius: 6.  # maximum search radius for OTF graph building in decoder
+timesteps: 1000
+dpo_beta: 2.0
+ori_ckpt: ${data.gen_path}/last.ckpt
+
+defaults:
+  - decoder: cspnet
+  - beta_scheduler: cosine
+  - sigma_scheduler: wrapped
