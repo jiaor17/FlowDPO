@@ -4,6 +4,7 @@
 
 Implementation codes for 3D Structure Prediction of Atomic Systems with Flow-based Direct Preference Optimization (FlowDPO).
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jiaor17/FlowDPO/blob/main/LICENSE)   [**[Paper]**](https://openreview.net/pdf?id=EpusiLXfNd)
 ![Overview](assets/overview.png "Overview")
 
 Codes for antibodies and crystals are provided separately in the `antibody` and `crystal` branches, and also collected in the corresponding folders in the `main` branch.
