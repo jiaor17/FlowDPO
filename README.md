@@ -4,9 +4,9 @@
 
 Implementation codes for 3D Structure Prediction of Atomic Systems with Flow-based Direct Preference Optimization (FlowDPO).
 
-![Overview](assets/overview.pdf "Overview")
+![Overview](assets/overview.png "Overview")
 
-Codes for antibodies and crystals are provided separately in the `antibody` and `crystal` branches, and also given in the corresponding folders in the `main` branch.
+Codes for antibodies and crystals are provided separately in the `antibody` and `crystal` branches, and also collected in the corresponding folders in the `main` branch.
 
 ## Antibodies
 
