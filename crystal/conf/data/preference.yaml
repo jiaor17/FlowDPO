@@ -1,0 +1,47 @@
+model_path: <ori_model_path>
+gen_path: ${oc.env:PROJECT_ROOT}/${data.model_path}
+
+num_targets: 1
+readout: mean
+max_atoms: 20
+otf_graph: true
+threshold: 0.5
+
+
+train_max_epochs: 300
+early_stopping_patience: 100000
+
+
+datamodule:
+  _target_: diffcsp.pl_data.datamodule.ConfidenceDataModule
+
+  datasets:
+    train:
+      _target_: diffcsp.pl_data.preference.ConfidenceDataset
+      name: DPO train
+      path: ${data.gen_path}/eval_diff_train_conf_set.pt
+      path_prop: ${data.gen_path}/crys_diff_train_conf_set.p
+      use_max_batch: 20
+      threshold: ${data.threshold}
+      num_ref_pairs: 2
+      num_gen_pairs: 10
+
+    val:
+      - _target_: diffcsp.pl_data.preference.ConfidenceDataset
+        name: DPO val
+        path: ${data.gen_path}/eval_diff_val_conf_set.pt
+        path_prop: ${data.gen_path}/crys_diff_val_conf_set.p
+        use_max_batch: 5
+        threshold: ${data.threshold}
+        num_ref_pairs: 1
+        num_gen_pairs: 5
+
+  num_workers:
+    train: 0
+    val: 0
+    test: 0
+
+  batch_size:
+    train: 512
+    val: 512
+    test: 256
