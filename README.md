@@ -59,7 +59,7 @@ python scripts/generate_preference.py --model_path <model_path> --dataset <data>
 python diffcsp/run.py data=preference model=<model>_DPO data.model_path=<pretrained_model_path>
 ```
 
-### Citation
+## Citation
 
 Please consider citing our work if you find it helpful:
 
@@ -73,3 +73,9 @@ Please consider citing our work if you find it helpful:
   year={2024}
 }
 ```
+
+## Contact
+
+If you have any questions, feel free to reach us at:
+
+Rui Jiao: [jiaor21@mails.tsinghua.edu.cn](mailto:jiaor21@mails.tsinghua.edu.cn)
